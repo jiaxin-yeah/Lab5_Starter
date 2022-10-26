@@ -43,7 +43,7 @@ function changeVol(event) {
 }
 
 function playAudio() {
-  const horn = document.getElementsByClassName("horn");
+  const horn = document.getElementsByClassName("horn-select");
   const audio = document.getElementsByClassName("hidden")[0];
   if (horn.options[horn.selectedIndex].text == "Party Horn") {
     const jsConfetti = new JSConfetti();
