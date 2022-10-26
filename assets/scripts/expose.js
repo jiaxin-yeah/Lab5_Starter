@@ -56,8 +56,8 @@ function init() {
   // TODO
   const horn = document.getElementsByClassName("horn");
   const volume = document.getElementsByClassName("volume");
-  const audio = document.getElementsByClassName("hidden")[0];
+  const button = document.querySelector("button");
   horn.addEventListener('display', (event) => {setImgAudio(event)});
   volume.addEventListener('change volume', (event) => {changeVol(event)});
-  audio.addEventListener('play audio', () => {playAudio()});
+  button.addEventListener('play audio', () => {playAudio()});
 }
