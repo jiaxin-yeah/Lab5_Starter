@@ -2,10 +2,8 @@
 
 window.addEventListener('DOMContentLoaded', init);
 
-import JSConfetti from 'js-confetti'
-
 function setImgAudio(event) {
-  const img = document.querySelector('img[src="assets/images/no-image.png"]');
+  const img = document.querySelector('img[alt="No image selected"]');
   const audio = document.getElementsByClassName("hidden")[0];
   if (event.target.value == "air-horn") {
     img.src = "assets/images/air-horn.svg";
@@ -22,7 +20,7 @@ function setImgAudio(event) {
 }
 
 function changeVol(event) {
-  const img = document.querySelector('alt="Volume level 2"');
+  const img = document.querySelector('img[alt="Volume level 2"]');
   const audio = document.getElementsByClassName("hidden")[0];
   if (event.target.value == 0) {
     img.src = "assets/icons/volumne-level-0.svg";
@@ -43,7 +41,7 @@ function changeVol(event) {
 }
 
 function playAudio() {
-  const horn = document.getElementsByClassName("horn-select");
+  const horn = document.getElementById("horn-select");
   const audio = document.getElementsByClassName("hidden")[0];
   if (horn.options[horn.selectedIndex].text == "Party Horn") {
     const jsConfetti = new JSConfetti();
@@ -54,10 +52,10 @@ function playAudio() {
 
 function init() {
   // TODO
-  const horn = document.getElementsByClassName("horn");
-  const volume = document.getElementsByClassName("volume");
-  const button = document.querySelector("button");
+  const horn = document.getElementById("horn-select");
+  // const volume = document.getElementsByClassName("volume");
+  // const button = document.querySelector("button");
   horn.addEventListener('display', (event) => {setImgAudio(event)});
-  volume.addEventListener('change volume', (event) => {changeVol(event)});
-  button.addEventListener('play audio', () => {playAudio()});
+  // volume.addEventListener('change volume', (event) => {changeVol(event)});
+  // button.addEventListener('play audio', () => {playAudio()});
 }
