@@ -42,10 +42,10 @@ function changeVol(event) {
   }
 }
 
-function playAudio(event) {
+function playAudio() {
   const horn = document.getElementsByClassName("horn");
   const audio = document.getElementsByClassName("hidden")[0];
-  if (event.target.value == "party-horn") {
+  if (horn.options[horn.selectedIndex].text == "Party Horn") {
     const jsConfetti = new JSConfetti();
     jsConfetti.addConfetti();
   }
@@ -55,7 +55,9 @@ function playAudio(event) {
 function init() {
   // TODO
   const horn = document.getElementsByClassName("horn");
+  const volume = document.getElementsByClassName("volume");
+  const audio = document.getElementsByClassName("hidden")[0];
   horn.addEventListener('display', (event) => {setImgAudio(event)});
-  horn.addEventListener('change volume', (event) => {changeVol(event)});
-  horn.addEventListener('play audio', (event) => {playAudio(event)});
+  volume.addEventListener('change volume', (event) => {changeVol(event)});
+  audio.addEventListener('play audio', () => {playAudio()});
 }
