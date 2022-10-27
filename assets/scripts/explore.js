@@ -31,25 +31,19 @@ function speak() {
       utterThis.voice = voices[i];
     }
   }
+  const img = document.querySelector('img[alt="Smiling face"]');
   synth.speak(utterThis);
-  if (synth.speaking == true) {
-    img.src = "assets/images/smiling-open.png";
-  }
-  else {
-    img.src = "assets/images/smiling.png";
-  }
-  synth.pause();
+  utterThis.addEventListener('start', function () {
+    if (synth.speaking == true){
+      img.src = "assets/images/smiling-open.png";
+    }
+  });
+  utterThis.addEventListener('end', function () {
+    if (synth.speaking == false){
+      img.src = "assets/images/smiling.png";
+    }
+  });
 }
-
-// function changeImg() {
-//   const img = document.querySelector('imge[alt="Smiling face"]');
-//   if (synth.speaking == true) {
-//     img.src = "assets/images/smiling-open.png";
-//   }
-//   else {
-//     img.src = "assets/images/smiling.png";
-//   }
-// }
 
 function init() {
   // TODO
