@@ -1,7 +1,54 @@
 // explore.js
 
 window.addEventListener('DOMContentLoaded', init);
+const synth = window.speechSynthesis;
+
+function inputText(event) {
+  const text = document.getElementById('text-to-speak');
+  text.value = event.target.value;
+}
+
+function loadVoice() {
+  const voiceSelect = document.getElementById('voice-select');
+  voices = synth.getVoices();
+  for (var i = 0; i < voices.length; i++) {
+    const option = document.createElement("option");
+    option.textContent = `${voices[i].name} (${voices[i].lang})`;
+    option.setAttribute('data-lang', voices[i].lang);
+    option.setAttribute('data-name', voices[i].name);
+    voiceSelect.appendChild(option);
+  }
+}
+
+function speak() {
+  const text = document.getElementById('text-to-speak');
+  const voiceSelect = document.getElementById('voice-select');
+  const utterThis = new SpeechSynthesisUtterance(text.value);
+  const selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+  voices = synth.getVoices();
+  for (let i = 0; i < voices.length ; i++) {
+    if (voices[i].name === selectedOption) {
+      utterThis.voice = voices[i];
+    }
+  }
+  synth.speak(utterThis);
+}
+
+function changeImg() {
+  const img = document.querySelector('imge[alt="Smiling face"]');
+  if (synth.speaking() == true) {
+    img.src = "assets/images/smiling-open.png";
+  }
+  else {
+    img.src = "assets/images/smiling.png";
+  }
+}
 
 function init() {
   // TODO
+  const text = document.getElementById('text-to-speak');
+  text.addEventListener('input', (event) => {inputText(event)});
+  synth.addEventListener('voiceschanged', () => {loadVoice()});
+  const button = document.querySelector('button');
+  button.addEventListener('click', () => {speak()});
 }
