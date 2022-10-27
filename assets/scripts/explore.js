@@ -2,6 +2,7 @@
 
 window.addEventListener('DOMContentLoaded', init);
 const synth = window.speechSynthesis;
+let voices = [];
 
 function inputText(event) {
   const text = document.getElementById('text-to-speak');
@@ -25,7 +26,6 @@ function speak() {
   const voiceSelect = document.getElementById('voice-select');
   const utterThis = new SpeechSynthesisUtterance(text.value);
   const selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
-  voices = synth.getVoices();
   for (let i = 0; i < voices.length ; i++) {
     if (voices[i].name === selectedOption) {
       utterThis.voice = voices[i];
