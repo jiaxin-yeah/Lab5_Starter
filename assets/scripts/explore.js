@@ -32,17 +32,24 @@ function speak() {
     }
   }
   synth.speak(utterThis);
-}
-
-function changeImg() {
-  const img = document.querySelector('imge[alt="Smiling face"]');
-  if (synth.speaking() == true) {
+  if (synth.speaking == true) {
     img.src = "assets/images/smiling-open.png";
   }
   else {
     img.src = "assets/images/smiling.png";
   }
+  synth.pause();
 }
+
+// function changeImg() {
+//   const img = document.querySelector('imge[alt="Smiling face"]');
+//   if (synth.speaking == true) {
+//     img.src = "assets/images/smiling-open.png";
+//   }
+//   else {
+//     img.src = "assets/images/smiling.png";
+//   }
+// }
 
 function init() {
   // TODO
